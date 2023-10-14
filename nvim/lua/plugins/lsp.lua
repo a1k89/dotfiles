@@ -5,17 +5,6 @@ local util = require('lspconfig/util')
 local configs = require('lspconfig.configs')
 
 local on_attach = configs.on_attach
-local config = {
-							-- disable virtual text
-							virtual_text = false,
-							-- show signs
-							signs = { active = signs },
-							update_in_insert = false,
-							underline = true,
-							severity_sort = true,
-						}
-
-vim.diagnostic.config(config)
 local function setup_lsp_diags()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -27,7 +16,17 @@ local function setup_lsp_diags()
     }
   )
 end
-
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    silent = true,
+    border = "rounded",
+  }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    { virtual_text = vim.lsp.virtual_text }
+  ),
+}
 lspconfig.pyright.setup {
     on_attach = on_attach,
     settings = {
@@ -38,10 +37,7 @@ lspconfig.pyright.setup {
     }
   }
 }
-lspconfig.tsserver.setup {}
-lspconfig.cssls.setup {
-    capabilities = capabilities
-}
+lspconfig.tsserver.setup {on_attach = on_attach}
 lspconfig.cssmodules_ls.setup {}
 lspconfig.rust_analyzer.setup {
   settings = {

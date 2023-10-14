@@ -23,17 +23,12 @@ vim.opt.showmatch = true
 local map = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 
--- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({
-  virtual_text = false,
-})
-
 local group = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 vim.api.nvim_create_autocmd('TextYankPost', {
-		desc = 'Highlight on yank',
-		group=group,
-		callback = function()
-				vim.highlight.on_yank({higroup = 'Visual', timeout = 200})
-		end,
+	desc = 'Highlight on yank',
+	group=group,
+	callback = function()
+		vim.highlight.on_yank({higroup = 'Visual', timeout = 200})
+	end,
 })
 

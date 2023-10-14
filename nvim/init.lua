@@ -31,9 +31,9 @@ lazy.setup({
 	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/cmp-buffer'},
 	{'hrsh7th/cmp-path'},
+    {'hrsh7th/cmp-nvim-lsp'},
 	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
 	{'saadparwaiz1/cmp_luasnip'},
-	{'hrsh7th/cmp-nvim-lsp'},
 	{'nvim-treesitter/nvim-treesitter'},
 	{'romgrk/barbar.nvim'},
 	{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
@@ -59,6 +59,7 @@ lazy.setup({
       build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
     {"nvimdev/lspsaga.nvim"},
+    {"onsails/lspkind-nvim"},
 }) 
 
 require('main') 
