@@ -35,3 +35,7 @@ vim.keymap.set('n', '<leader>hr', "<Cmd>Telescope harpoon marks<CR>")
 vim.keymap.set('n', '<leader>hx', require('harpoon.mark').add_file)
 vim.keymap.set('n', '<leader>hn', require('harpoon.ui').nav_next)
 vim.keymap.set('n', '<leader>hp', require('harpoon.ui').nav_prev)
+
+-- LspSaga
+vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
+

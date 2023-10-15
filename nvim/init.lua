@@ -27,12 +27,12 @@ lazy.setup({
     {'ThePrimeagen/harpoon'},
 	{'lukas-reineke/indent-blankline.nvim'},
 	{'kyazdani42/nvim-tree.lua'},
-	{'neovim/nvim-lspconfig'},
-	{'hrsh7th/nvim-cmp'},
-	{'hrsh7th/cmp-buffer'},
-	{'hrsh7th/cmp-path'},
+    {'onsails/lspkind-nvim'},
+	{'L3MON4D3/LuaSnip'},
     {'hrsh7th/cmp-nvim-lsp'},
-	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
+	{'hrsh7th/cmp-buffer'},
+	{'hrsh7th/nvim-cmp'},
+	{'neovim/nvim-lspconfig'},
 	{'saadparwaiz1/cmp_luasnip'},
 	{'nvim-treesitter/nvim-treesitter'},
 	{'romgrk/barbar.nvim'},
@@ -44,22 +44,9 @@ lazy.setup({
 	{'MunifTanjim/prettier.nvim'},
 	{'nvim-lualine/lualine.nvim'},
 	{'numToStr/Comment.nvim'},
-    {"catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    {"ray-x/go.nvim",
-      dependencies = {  -- optional packages
-        "ray-x/guihua.lua",
-        "neovim/nvim-lspconfig",
-        "nvim-treesitter/nvim-treesitter",
-      },
-      config = function()
-        require("go").setup()
-      end,
-      event = {"CmdlineEnter"},
-      ft = {"go", 'gomod'},
-      build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-    },
-    {"nvimdev/lspsaga.nvim"},
-    {"onsails/lspkind-nvim"},
+    {'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+   {'nvimdev/lspsaga.nvim'},
+    {'dinhhuy258/git.nvim'},
 }) 
 
 require('main') 
@@ -78,6 +65,6 @@ require('plugins.prettier')
 require('plugins.lualine')
 require('plugins.comment')
 require('plugins.catppuccin')
-require('plugins.friendly-snippets')
 require('plugins.lspsaga')
 require('plugins.harpoon')
+require('plugins.git')

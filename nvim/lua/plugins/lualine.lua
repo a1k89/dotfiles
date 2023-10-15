@@ -32,26 +32,24 @@ local function clock()
 	return " " .. os.date("%H:%M")
 end
 
-local function holidays()
-	return "🎅🎄🌟🎁"
-end
-
-local function my_favs()
-	return "🦄🐙"
-end
-
 lualine.setup {
   options = {
-    theme = bubbles_theme,
-    component_separators = '|',
-    section_separators = { left = "", right = "" },
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },   theme = bubbles_theme,
   },
   sections = {
     lualine_a = { "mode" },
 	lualine_b = { "branch"},
     lualine_c = { 'fileformat' },
 	lualine_y = { "location" },
-	lualine_z = { clock, my_favs },
+    lualine_x = {
+      { 'diagnostics', 
+                sources = { "nvim_diagnostic" }, 
+                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' } },
+      'encoding',
+      'filetype'
+    },
+	lualine_z = { clock,},
   },
   inactive_sections = {
     lualine_a = {},

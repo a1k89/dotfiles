@@ -39,49 +39,6 @@ lspconfig.pyright.setup {
 }
 lspconfig.tsserver.setup {on_attach = on_attach}
 lspconfig.cssmodules_ls.setup {}
-lspconfig.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {
-            diagnostics = {
-                enable = true,
-                experimental = {
-                    enable = true,
-                },
-            },
-    },
-  },
-}
-lspconfig.gopls.setup {
-	cmd = { 'gopls', 'serve' },
-  	filetypes = { 'go', 'go.mod' },
-    settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-      },
-      staticcheck = true,
-    }
-  }
-}
-
-if not configs.helm_ls then
-  configs.helm_ls = {
-    default_config = {
-      cmd = {"helm_ls", "serve"},
-      filetypes = {'helm'},
-      root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
-      end,
-    },
-  }
-end
-
-lspconfig.helm_ls.setup {
-  filetypes = {"helm"},
-  cmd = {"helm_ls", "serve"},
-}
-
 vim.keymap.set('n', '<leader>lD', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)

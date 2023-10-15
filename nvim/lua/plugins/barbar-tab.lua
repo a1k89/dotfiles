@@ -9,12 +9,7 @@ barbar.setup {
 	animation = false,
 	icons = {
 		buffer_index = true,
-		diagnostics = {
-      		[vim.diagnostic.severity.ERROR] = {enabled = true, icon = "E"},
-      		[vim.diagnostic.severity.WARN] = {enabled = true},
-      		[vim.diagnostic.severity.INFO] = {enabled = true},
-      		[vim.diagnostic.severity.HINT] = {enabled = true},
-    	}
+		diagnostics = {}
 	},
 	sidebar_filetypes = {
 		NvimTree = true,
