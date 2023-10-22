@@ -28,15 +28,20 @@ local handlers = {
   ),
 }
 lspconfig.pyright.setup {
-    on_attach = on_attach,
-    settings = {
-    python = {
-      analysis = {
-          typeCheckingMode = "off"
-      }
+     handlers=handlers,
+     on_attach = on_attach,
+     settings = {
+     python = {
+       analysis = {
+           typeCheckingMode = "off",
+           autoSearchPaths = true,
+           diagnosticMode = 'openFilesOnly',
+           useLibraryCodeForTypes = true
+       }
     }
-  }
+   }
 }
+
 lspconfig.tsserver.setup {on_attach = on_attach}
 lspconfig.cssmodules_ls.setup {}
 vim.keymap.set('n', '<leader>lD', vim.diagnostic.open_float)
@@ -48,7 +53,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
         local opts = {buffer = ev.buf}
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)

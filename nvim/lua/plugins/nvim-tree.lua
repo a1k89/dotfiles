@@ -9,18 +9,10 @@ local keymap = vim.keymap -- for conciseness
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 keymap.set('n', 'nt', ':NvimTreeFocus<CR>', default_opts) 
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.opt.termguicolors = true
-
-local HEIGHT_RATIO = 0.6 -- You can change this
-local WIDTH_RATIO = 0.6  -- You can change this too
-
 local options = {
   filters = {
     dotfiles = false,
-    exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
+    exclude = { vim.fn.stdpath "config" .. "/lua/custom", "**/__pycache__/" },
   },
   disable_netrw = true,
   hijack_netrw = true,
@@ -28,18 +20,17 @@ local options = {
   hijack_unnamed_buffer_when_opening = false,
   sync_root_with_cwd = true,
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_root = false,
   },
   view = {
     adaptive_size = false,
     side = "left",
     width = 30,
-    preserve_window_proportions = true,
+    preserve_window_proportions = false,
   },
   git = {
-    enable = false,
-    ignore = true,
+    enable = true,
   },
   filesystem_watchers = {
     enable = true,
@@ -63,7 +54,7 @@ local options = {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = false,
+        git = true,
       },
 
       glyphs = {

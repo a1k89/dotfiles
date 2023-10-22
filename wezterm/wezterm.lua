@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 
 
 local config = {
-    default_cursor_style = "BlinkingBlock",
+    default_cursor_style = "SteadyBlock",
     macos_window_background_blur = 30,
     enable_tab_bar = true,
     audible_bell = "Disabled",

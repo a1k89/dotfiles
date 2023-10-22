@@ -2,6 +2,9 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+
+-- Usefule
+map('n', 'C-c', '<Cmd>%y+<CR>', opts)
 -- Tab bar
 map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
 map('n', '<Space><Tab>', '<Cmd>BufferPrevious<CR>', opts)
