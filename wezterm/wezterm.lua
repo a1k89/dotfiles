@@ -3,7 +3,6 @@ local wezterm = require 'wezterm'
 
 local config = {
     default_cursor_style = "SteadyBlock",
-    macos_window_background_blur = 30,
     enable_tab_bar = true,
     audible_bell = "Disabled",
     color_scheme = "Abernathy",
@@ -19,14 +18,12 @@ local config = {
 	},
     font = wezterm.font("JetBrains Mono", { weight = "Regular" }),
 	font_size = 13,
-    launch_menu = {},
 	tab_bar_at_bottom = false,
 	tab_max_width = 999, window_padding = { left = 0,
 		right = 0,
 		top = 0,
 		bottom = 0,
 	},
-    window_decorations = "TITLE",
     inactive_pane_hsb = {
 		brightness = 0.9,
 	},
