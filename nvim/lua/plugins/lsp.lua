@@ -1,36 +1,44 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local lspconfig = require('lspconfig')
-local util = require('lspconfig/util')
-local configs = require('lspconfig.configs')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local keymap = vim.keymap
+local opts = {noremap = true, silent = true }
 
-local on_attach = configs.on_attach
-local function setup_lsp_diags()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-      virtual_text = false,
-      signs = true,
-      update_in_insert = false,
-      underline = true,
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
     }
-  )
+)
+
+local on_attach = function(_, bufnr)
+    opts.buffer = bufnr
+    keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+    keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+	keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+	keymap.set('n', '<leader>qq', '<cmd>Telescope diagnostics bufnr=0<CR>', opts)
+	keymap.set('n', '<leader>lr', vim.cmd.LspRestart, opts)
 end
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    silent = true,
-    border = "rounded",
-  }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = vim.lsp.virtual_text }
-  ),
-}
-lspconfig.pyright.setup {
-     handlers=handlers,
-     on_attach = on_attach,
-     settings = {
+
+local capabilities = cmp_nvim_lsp.default_capabilities()
+local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
+for type, icon in pairs(signs) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+end
+
+lspconfig['html'].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+lspconfig['tsserver'].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+lspconfig['pyright'].setup({
+    capabilities = capabilities,
+    on_attach =  on_attach,
+    settings = {
      python = {
        analysis = {
            typeCheckingMode = "off",
@@ -40,27 +48,24 @@ lspconfig.pyright.setup {
        }
     }
    }
-}
 
-lspconfig.tsserver.setup {on_attach = on_attach}
-lspconfig.cssmodules_ls.setup {}
-vim.keymap.set('n', '<leader>lD', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>ld', vim.diagnostic.setloclist)
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-    callback = function(ev)
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        local opts = {buffer = ev.buf}
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, opts)
-        vim.keymap.set({'n', 'v'}, '<Leader>la', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', '<Leader>lf',
-                       function() vim.lsp.buf.format {async = true} end, opts)
-    end
 })
+lspconfig['lua_ls'].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = { -- custom settings for lua
+				Lua = {
+					-- make the language server recognize "vim" global
+					diagnostics = {
+						globals = { 'vim' },
+					},
+					workspace = {
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+							[vim.fn.stdpath('config') .. '/lua'] = true,
+						},
+					},
+				},
+			},
+		})

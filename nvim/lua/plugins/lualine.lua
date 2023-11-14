@@ -28,9 +28,6 @@ local bubbles_theme = {
     c = { fg = colors.black, bg = colors.black },
   },
 }
-local function clock()
-	return " " .. os.date("%H:%M")
-end
 
 lualine.setup {
   options = {
@@ -49,7 +46,6 @@ lualine.setup {
       'encoding',
       'filetype'
     },
-	lualine_z = { clock,},
   },
   inactive_sections = {
     lualine_a = {},

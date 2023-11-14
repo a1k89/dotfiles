@@ -12,16 +12,14 @@ vim.opt.autoindent = true
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.background = "dark"
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = {'menu', 'menuone', 'noselect', 'preview'}
 vim.opt.swapfile = false
 vim.opt.numberwidth = 5
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 32
 vim.opt.showmode = false
 vim.opt.list = true
 vim.api.nvim_set_option("clipboard","unnamed")
 vim.opt.showmatch = true
-local map = vim.api.nvim_set_keymap
-local default_opts = {noremap = true, silent = true}
 
 local group = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 vim.api.nvim_create_autocmd('TextYankPost', {

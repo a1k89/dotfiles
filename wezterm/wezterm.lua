@@ -24,9 +24,6 @@ local config = {
 		top = 0,
 		bottom = 0,
 	},
-    inactive_pane_hsb = {
-		brightness = 0.9,
-	},
 }
 local act = wezterm.action
 

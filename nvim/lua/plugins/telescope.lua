@@ -63,11 +63,10 @@ local options = {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-    harpoon = {
-
-    }
-
-  },    
+  },
 }
 
 telescope.setup(options)
+
+-- All extensions here
+require('telescope').load_extension('fzf')

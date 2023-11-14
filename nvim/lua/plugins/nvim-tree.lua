@@ -1,13 +1,9 @@
 local setup, nvimtree = pcall(require, "nvim-tree")
 if not setup then return end
 
-vim.cmd([[
-  nnoremap - :NvimTreeToggle<CR>
-]])
-
 local keymap = vim.keymap -- for conciseness
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
-keymap.set('n', 'nt', ':NvimTreeFocus<CR>', default_opts) 
+keymap.set('n', 'nt', ':NvimTreeFocus<CR>') 
 
 local options = {
   filters = {
@@ -26,7 +22,7 @@ local options = {
   view = {
     adaptive_size = false,
     side = "left",
-    width = 30,
+    width = 25 ,
     preserve_window_proportions = false,
   },
   git = {
