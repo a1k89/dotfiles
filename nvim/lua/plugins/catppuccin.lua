@@ -3,3 +3,4 @@ if not setup then return end
 
 catppuccin.setup()
 vim.cmd.colorscheme "catppuccin"
+

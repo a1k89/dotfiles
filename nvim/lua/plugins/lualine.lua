@@ -38,7 +38,6 @@ lualine.setup {
     lualine_a = { "mode" },
 	lualine_b = { "branch"},
     lualine_c = { 'fileformat' },
-	lualine_y = { "location" },
     lualine_x = {
       { 'diagnostics', 
                 sources = { "nvim_diagnostic" }, 
