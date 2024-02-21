@@ -1,0 +1,54 @@
+# ~/.config/starship.toml
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+error_symbol = "[✖](bold red) "
+
+[cmd_duration]
+min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
+format = " took [$duration]($style)"
+
+[directory]
+truncation_length = 5
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[git_branch]
+format = " [$symbol$branch]($style) "
+symbol = "🍣 "
+style = "bold yellow"
+
+[git_status]
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[package]
+disabled = true
+
+[python]
+format = "[$symbol$version]($style) "
+style = "bold green"
+
+[rust]
+format = "[$symbol$version]($style) "
+style = "bold green"
+
+[golang]
+format = 'via [🏎💨 $version](bold cyan) '
+
+[lua]
+format = 'via [🌕 $version](bold blue) '
+
+[shlvl]
+disabled = false
+threshold = 1
+symbol = "↕️ "
+
+[shell]
+disabled = false
+powershell_indicator = ""
+cmd_indicator = ""
+
+[os]
+disabled = false
+format = "$symbol "
+symbols.Windows = ""
