@@ -5,7 +5,6 @@ local highlight = {
     "CursorColumn",
     "Whitespace",
 }
-    
 indent_blankline.setup({
     indent = {
         highlight = highlight,
@@ -18,4 +17,5 @@ indent_blankline.setup({
         highlight = { "Function", "Label", },
     }
 })
+
 

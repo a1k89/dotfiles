@@ -31,29 +31,44 @@ local bubbles_theme = {
 
 lualine.setup {
   options = {
+    icons_enable = true,
     section_separators = { left = '', right = '' },
-    component_separators = { left = '', right = '' },   theme = bubbles_theme,
-  },
+    component_separators = { left = '', right = '' },   
+    theme = bubbles_theme,
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 500,
+      tabline = 500,
+      winbar = 500,
+    }
+},
   sections = {
     lualine_a = { "mode" },
-	lualine_b = { "branch"},
-    lualine_c = { 'fileformat' },
+	lualine_b = { "branch", "diff", },
+    lualine_c = {{"filename", path = 3}, "filesize"},    
     lualine_x = {
       { 'diagnostics', 
                 sources = { "nvim_diagnostic" }, 
                 symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' } },
       'encoding',
-      'filetype'
+      'filetype',
     },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
+    lualine_c = {"filename"},
+    lualine_x = {"location"},   
     lualine_y = {},
     lualine_z = {},
   },
   tabline = {},
-  extensions = {},
+  extensions = {
+        "fugitive",
+        "trouble",
+        "lazy",
+        "oil",
+        "quickfix",
+    },
 }

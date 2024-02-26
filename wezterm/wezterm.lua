@@ -78,33 +78,6 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   })
 end)
 
-wezterm.on("update-right-status", function(window, pane)
-  local workspace_or_leader = window:active_workspace()
-  -- Change the worspace name status if leader is active
-  if window:active_key_table() then workspace_or_leader = window:active_key_table() end
-  if window:leader_is_active() then workspace_or_leader = "LEADER" end
-
-  local cwd = pane:get_current_working_dir() or "N/A"
-  local last_folder = get_last_folder_segment(cwd)
-  local cmd = get_last_folder_segment(pane:get_foreground_process_name())
-  local time = wezterm.strftime("%H:%M")
-  local hostname = " " .. wezterm.hostname() .. " ";
-
-  window:set_right_status(wezterm.format({
-    { Text = wezterm.nerdfonts.oct_table .. " " .. workspace_or_leader },
-    { Text = " | " },
-    -- { Text = wezterm.nerdfonts.md_folder .. " " .. last_folder },
-    -- { Text = " | " },
-    { Foreground = { Color = "FFB86C" } },
-    { Text = wezterm.nerdfonts.fa_code .. " " .. cmd },
-    "ResetAttributes",
-    { Text = " | " },
-    { Text = wezterm.nerdfonts.oct_person .. " " .. hostname },
-    { Text = " | " },
-    { Text = wezterm.nerdfonts.md_clock .. " " .. time },
-    { Text = " | " },
-  }))
-end)
 config.leader = { key = 'o', mods = 'ALT', timeout_milliseconds = 1000 }
 config.keys = {
    {

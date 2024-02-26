@@ -1,12 +1,15 @@
 local setup, navigator = pcall(require, "navigator")
 if not setup then
-    return 
+    return
 end
 
 navigator.setup(
     {
         icons = {
             icons = false
+        },
+        lsp = {
+            enable = false
         }
     }
 )

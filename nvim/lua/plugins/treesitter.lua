@@ -2,22 +2,25 @@ local setup, treesitter = pcall(require, "nvim-treesitter.configs")
 if not setup then return end
 
 treesitter.setup {
-    ensure_installed = { "python", "javascript", "typescript", "go","lua", "query"},
-    sync_install = true,
+    ensure_installed = {
+        "python", 
+        "javascript", 
+        "typescript", 
+        "go",
+        "lua", 
+        "luadoc",
+        "query",
+        "vim",
+        "vimdoc",
+        "bash"
+    },
+    sync_install = false,
     indent = { enable = true },
+    autotag = { enable = true},
     highlight = {
         enable = true
     },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
-    },
-  },
-  textobjects = {
+    textobjects = {
     select = {
       enable = true,
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
@@ -55,23 +58,19 @@ treesitter.setup {
         ['[M'] = '@function.outer',
         ['[]'] = '@class.outer',
       },
-      -- goto_next = {
-      --   [']i'] = "@conditional.inner",
-      -- },
-      -- goto_previous = {
-      --   ['[i'] = "@conditional.inner",
-      -- }
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
     },
   },
 }
 
 
+local parsers = require("nvim-treesitter.parsers").get_parser_configs()
+parsers.asm = {
+      install_info = {
+        url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+        files = {
+          'src/parser.c',
+        },
+        branch = 'main',
+      },
+    }
+vim.cmd('autocmd BufNewFile,BufRead .* setfiletype bash')

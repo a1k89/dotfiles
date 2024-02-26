@@ -8,7 +8,8 @@ keymap.set('n', 'nt', ':NvimTreeFocus<CR>')
 local options = {
   filters = {
     dotfiles = false,
-    exclude = { vim.fn.stdpath "config" .. "/lua/custom", "**/__pycache__/" },
+    exclude = { 
+        vim.fn.stdpath "config" .. "/lua/custom", "**/__pycache__/" },
   },
   disable_netrw = true,
   hijack_netrw = true,
@@ -37,7 +38,7 @@ local options = {
     },
   },
   renderer = {
-    root_folder_label = false,
+    root_folder_label = true,
     highlight_git = false,
     highlight_opened_files = "none",
 

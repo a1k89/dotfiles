@@ -12,21 +12,28 @@ vim.opt.autoindent = true
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.background = "dark"
-vim.opt.completeopt = {'menu', 'menuone', 'noselect', 'preview'}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.swapfile = false
 vim.opt.numberwidth = 5
 vim.opt.scrolloff = 32
 vim.opt.showmode = false
 vim.opt.list = true
-vim.api.nvim_set_option("clipboard","unnamed")
+vim.api.nvim_set_option("clipboard", "unnamed")
 vim.opt.showmatch = true
 
-local group = vim.api.nvim_create_augroup('user_cmds', {clear = true})
-vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight on yank',
-	group=group,
+local group = vim.api.nvim_create_augroup("user_cmds", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight on yank",
+	group = group,
 	callback = function()
-		vim.highlight.on_yank({higroup = 'Visual', timeout = 200})
+		vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
 	end,
 })
 
+vim.opt.listchars = {
+	extends = "┊",
+	precedes = "‹",
+	nbsp = "␣",
+	trail = "·",
+	tab = "┊ ",
+}
