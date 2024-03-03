@@ -1,6 +1,6 @@
 # ~/.config/starship.toml
 "$schema" = 'https://starship.rs/config-schema.json'
-
+add_newline = true
 [character]
 error_symbol = "[✖](bold red) "
 
@@ -51,4 +51,3 @@ cmd_indicator = ""
 [os]
 disabled = false
 format = "$symbol "
-symbols.Windows = ""

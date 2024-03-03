@@ -20,6 +20,7 @@ function lazy.setup(plugins)
 end
 
 lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 lazy.opts = {}
 
 lazy.setup({
@@ -33,13 +34,6 @@ lazy.setup({
 		build = "make",
 	},
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -48,7 +42,17 @@ lazy.setup({
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "romgrk/barbar.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "kyazdani42/nvim-tree.lua" },
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		},
+	},
+	-- { "kyazdani42/nvim-tree.lua" },
 	{ "nvim-lualine/lualine.nvim" },
 	{
 		"williamboman/mason.nvim",
@@ -78,6 +82,7 @@ lazy.setup({
 	-- Git
 	{ "tpope/vim-fugitive" },
 	{ "lewis6991/gitsigns.nvim" },
+	{ "sindrets/diffview.nvim" },
 
 	-- Golang
 	{
@@ -93,6 +98,10 @@ lazy.setup({
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()',
+	},
+	{
+		"pluffie/neoproj",
+		cmd = { "ProjectOpen", "ProjectNew" },
 	},
 })
 require("main")
@@ -111,3 +120,5 @@ require("plugins.autosave")
 require("plugins.indent")
 require("plugins.gitsigns")
 require("plugins.treesitter")
+-- require("plugins.nvim-tree")
+require("plugins.neo-tree")

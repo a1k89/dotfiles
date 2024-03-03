@@ -15,8 +15,8 @@ null_ls.setup({
 			end,
 			extra_args = { "--max-line-length", "88" },
 		}),
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.isort,
+		-- null_ls.builtins.formatting.black,
+		-- null_ls.builtins.formatting.isort,
 		null_ls.builtins.formatting.stylua,
 	},
 
