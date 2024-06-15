@@ -1,5 +1,5 @@
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
@@ -11,15 +11,16 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-vim.opt.background = "dark"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.swapfile = false
 vim.opt.numberwidth = 5
 vim.opt.scrolloff = 32
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.list = true
 vim.api.nvim_set_option("clipboard", "unnamed")
 vim.opt.showmatch = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 local group = vim.api.nvim_create_augroup("user_cmds", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

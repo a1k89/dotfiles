@@ -73,4 +73,3 @@ local options = {
 telescope.setup(options)
 
 require("telescope").load_extension("fzf")
-require("telescope").load_extension("make")

@@ -49,7 +49,6 @@ lazy.setup({
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
-            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
     },
     { "nvim-lualine/lualine.nvim" },
@@ -58,12 +57,14 @@ lazy.setup({
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     },
-    { "rebelot/kanagawa.nvim" },
     { "windwp/nvim-ts-autotag" },
     { "windwp/nvim-autopairs" },
     { "jose-elias-alvarez/null-ls.nvim" },
-    { "numToStr/Comment.nvim" },
     { "pocco81/auto-save.nvim" },
+    {
+        "folke/trouble.nvim",
+        branch = "dev"
+    },
 
     -- Autocompletion
     { "hrsh7th/nvim-cmp" },
@@ -76,6 +77,7 @@ lazy.setup({
         version = "v2.*",
         build = "make install_jsregexp",
     },
+
     { "rafamadriz/friendly-snippets" },
     { "rmagatti/goto-preview" },
 
@@ -99,15 +101,63 @@ lazy.setup({
         build = ':lua require("go.install").update_all_sync()',
     },
     {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+        opts = {
+            rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
+        }
+    },
+    {
         "rest-nvim/rest.nvim",
         version = "1.0",
         ft = "http",
     },
-    { "towolf/vim-helm" },
     { 'akinsho/toggleterm.nvim', version = "*", config = true },
-    { "sopa0/telescope-makefile" },
+
+
+    -- Databases
+    {
+        'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+            { 'tpope/vim-dadbod',                     lazy = true },
+            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        init = function()
+            vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    },
+    {
+        "sainnhe/everforest",
+        config = function()
+            vim.g.everforest_background = "hard"
+            vim.cmd.colorscheme("everforest")
+            vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#9DA9A0" })
+        end,
+    },
+
+    -- Navigations
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+    },
 })
+
+
 require("main")
+require("helpers")
 require("mappings")
 require("plugins.telescope")
 require("plugins.harpoon")
@@ -117,12 +167,10 @@ require("plugins.ts-autotag")
 require("plugins.ts-autopairs")
 require("plugins.null-ls")
 require("plugins.lualine")
-require("plugins.comment")
-require("plugins.kanagawa")
 require("plugins.autosave")
 require("plugins.indent")
 require("plugins.gitsigns")
 require("plugins.treesitter")
-require("plugins.neo-tree")
 require("plugins.goto-preview")
 require("plugins.rest")
+require("plugins.neo-tree")

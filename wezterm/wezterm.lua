@@ -46,7 +46,7 @@ wezterm.on("update-status", function(window, _)
 end)
 
 
-config.leader = { key = 'o', mods = 'ALT', timeout_milliseconds = 1000 }
+config.leader = { key = 'o', mods = 'ALT', timeout_milliseconds = 500 }
 config.keys = {
     {
         key = 'E',
@@ -113,16 +113,25 @@ config.keys = {
         mods = "LEADER",
         action = wezterm.action_callback(function(window, pane)
             local workspaces = {
-                { id = "/Users/andrey.koptev/Projects/mailman/",              label = "Mailman" },
-                { id = "/Users/andrey.koptev/Projects/cuscom.transport/",     label = "Cuscom" },
-                { id = "/Users/andrey.koptev/Projects/cuscom.transport.api/", label = "Cuscom api" },
-                { id = "/Users/andrey.koptev/Projects/jit",                   label = "Jit" },
-                { id = "/Users/andrey.koptev/Projects/looney_letters/",       label = "Looney" },
-                { id = "/Users/andrey.koptev/Projects/deploy/",               label = "Deploy config" },
-                { id = "/Users/andrey.koptev/Projects/helm/",                 label = "Helm config" },
-                { id = "/Users/andrey.koptev/Projects/rest/",                 label = "Rest" },
-                { id = "/Users/andrey.koptev/Projects/education/",            label = "Education" },
-                { id = "~/.config/",                                          label = "Dotfiles" },
+                { id = "/Users/andrey.koptev/Projects/mailman/",                                              label = "Mailman" },
+                { id = "/Users/andrey.koptev/Projects/cuscom.transport/",                                     label = "Cuscom" },
+                { id = "/Users/andrey.koptev/Projects/cuscom.transport.api/",                                 label = "Cuscom api" },
+                { id = "/Users/andrey.koptev/Projects/jit",                                                   label = "Jit" },
+                { id = "/Users/andrey.koptev/Projects/looney_letters/",                                       label = "Looney" },
+                { id = "/Users/andrey.koptev/Projects/deploy/",                                               label = "Deploy config" },
+                { id = "/Users/andrey.koptev/Projects/helm/",                                                 label = "Helm config" },
+                { id = "/Users/andrey.koptev/Projects/rest/",                                                 label = "Rest" },
+                { id = "/Users/andrey.koptev/Projects/education/",                                            label = "Education" },
+                { id = "/Users/andrey.koptev/.config",                                                        label = "Dotfiles" },
+                { id = "/Users/andrey.koptev/",                                                               label = "Kubectl" },
+                { id = "/Users/andrey.koptev/Projects/leos.bob/",                                             label = "Leos.bob" },
+                { id = "/Users/andrey.koptev/Projects/feedgenerator/",                                        label = "Feedgenerator" },
+                { id = "/Users/andrey.koptev/Projects/marketing.endpoint/",                                   label = "Markeing endpoint" },
+                { id = '/Users/andrey.koptev/Library/Mobile Documents/com~apple~CloudDocs/Obsidian/GradeUp/', label = "Obsidian" },
+                { id = '/Users/andrey.koptev/Projects/matryoshka/',                                           label = "Matryoshka" },
+                { id = '/Users/andrey.koptev/Projects/seoapi/',                                               label = "SEO api" },
+                { id = '/Users/andrey.koptev/Projects/madmin/',                                               label = "Madmin" },
+                { id = '/Users/andrey.koptev/Projects/mobile.api.server/',                                    label = "Mobile API" },
             }
             window:perform_action(
                 act.InputSelector {
@@ -142,7 +151,7 @@ config.keys = {
                         end
                     end),
                     fuzzy = true,
-                    title = "Projects",
+                    title = "Jump to project",
                     choices = workspaces,
                     fuzzy_description = 'Project: ',
                 },

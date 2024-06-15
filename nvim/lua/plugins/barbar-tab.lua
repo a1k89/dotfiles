@@ -7,9 +7,11 @@ barbar.setup {
 	auto_hide = false,
 	clickable = false,
 	animation = false,
+    insert_at_end = true,
 	icons = {
 		buffer_index = true,
-		diagnostics = {}
+		diagnostics = {},
+        filetype = {enabled=true},
 	},
 	sidebar_filetypes = {
 		NvimTree = true,

@@ -8,11 +8,12 @@ autosave.setup({
     enabled = true,          -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
     execution_message = {
         message = function() -- message to print on save
-            return ("Saved at " .. vim.fn.strftime("%H:%M:%S"))
+            return ("Saved OK at " .. vim.fn.strftime("%H:%M:%S"))
         end,
-        dim = 0.10,                                    -- dim the color of `message`
-        cleaning_interval = 125,                       -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+        dim = 0.10,              -- dim the color of `message`
+        cleaning_interval = 125, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
     },
+
     trigger_events = { "InsertLeave", "TextChanged" }, -- vim events that trigger auto-save. See :h events
     -- function that determines whether to save the current buffer or not
     -- return true: if buffer is ok to be saved
